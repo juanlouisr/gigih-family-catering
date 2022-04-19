@@ -5,6 +5,10 @@
 <div>
   <%= link_to "Edit this category", edit_category_path(@category) %> |
   <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+  <br></br>
+  <%= button_to 'Delete', 
+      @category, 
+      method: :delete, 
+      onclick: "return confirmDestroy('Are you sure want destroy this category?')", 
+      class: "btn btn-outline-danger btn-sm text-white" %>
 </div>

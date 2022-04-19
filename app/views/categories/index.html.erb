@@ -3,12 +3,30 @@
 <h1>Categories</h1>
 
 <div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
-</div>
+  <table class="w-100 table table-striped table-dark table-hover table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th style="width:70%">Name</th>
+        <th style="width:15%"> </th>
+        <th style="width:15%"> </th>
+      </tr>
+    </thead>
 
-<%= link_to "New category", new_category_path %>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= link_to category.name, category, class:"text-white" %></td>
+          <td><%= link_to "Edit", edit_category_path(category), class:"text-white" %></td>
+          <%# turbo rails not working %>
+          <td><%= button_to 'Delete', category, 
+                  method: :delete, 
+                  onclick: "return confirmDestroy('Are you sure want destroy this category?')", 
+                  class: "btn btn-outline-danger btn-sm text-white" %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+
+  <%= link_to 'New Category', new_category_path, class:"btn btn-secondary" %>
+</div>
