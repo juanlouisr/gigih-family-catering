@@ -42,4 +42,23 @@ RSpec.describe Menu, type: :model do
     menu2.valid?
     expect(menu2.errors[:name]).to include('has already been taken')
   end
+
+  it 'is invalid with a description longer than 150 character' do
+    chars = 'ABCDEFGHIJ'
+    x = 15
+    desc = ''
+    while x >= 1
+      desc += chars
+      x -= 1
+    end
+
+    menu = Menu.new(
+      name: 'Makanan',
+      price: 15_000,
+      description: desc
+    )
+    expect(menu).to be_valid
+    menu.description += 'A'.to_s
+    expect(menu).to_not be_valid
+  end
 end
