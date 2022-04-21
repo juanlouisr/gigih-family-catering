@@ -61,4 +61,15 @@ RSpec.describe Menu, type: :model do
     menu.description += 'A'.to_s
     expect(menu).to_not be_valid
   end
+
+  it 'is invalid with price lower than than 0.01' do
+    menu = Menu.new(
+      name: 'Makanan',
+      price: 0.001
+    )
+
+    menu.valid?
+
+    expect(menu.errors[:price]).to include("must be greater than or equal to 0.01")
+  end
 end
