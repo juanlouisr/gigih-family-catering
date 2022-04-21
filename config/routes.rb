@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :order_details
+  resources :orders
+  resources :customers
   resources :menu_categories
   resources :menus
   resources :categories
