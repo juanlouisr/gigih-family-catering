@@ -3,12 +3,37 @@
 <h1>Menus</h1>
 
 <div id="menus">
-  <% @menus.each do |menu| %>
-    <%= render menu %>
-    <p>
-      <%= link_to "Show this menu", menu %>
-    </p>
-  <% end %>
-</div>
+  <table class="w-100 table table-striped table-dark table-hover table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th style="width:20%">Name</th>
+        <th style="width:15%">Price</th>
+        <th style="width:20%">Categories</th>
+        <th style="width:35%">description</th>
+        <th style="width:10%"> </th>
+      </tr>
+    </thead>
 
-<%= link_to "New menu", new_menu_path %>
+    <tbody>
+      <% @menus.each do |menu| %>
+        <tr>
+          <td><%= link_to menu.name, menu, class:"text-white" %></td>
+          <td><%= menu.price %></td>
+          <td>
+          <% menu.categories.each do |category| %>
+            <div> <%= category.name %></div>
+          <% end %>
+          </td>
+          <td><%= menu.description %></td>
+          <%# turbo rails not working %>
+          <td><%= button_to 'Delete', menu, 
+                  method: :delete, 
+                  onclick: "return confirmDestroy('Are you sure want destroy this menu?')", 
+                  class: "btn btn-outline-danger btn-sm text-white" %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+<%= link_to 'New Menu', new_menu_path, class:"btn btn-secondary" %>
