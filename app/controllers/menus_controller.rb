@@ -25,7 +25,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to menu_url(@menu), notice: "Menu was successfully created." }
+        format.html { redirect_to menus_url, notice: "Menu was successfully created." }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new, status: :unprocessable_entity }
