@@ -77,3 +77,19 @@ bundle exec rails s
 - [GitHub](https://github.com/mizuday)
 
 - [Linkedin](linkedin.com/in/juan-louis-rombetasik/)
+
+## Aditional Notes
+
+Link Github: https://github.com/mizuday/gigih-family-catering
+
+ERD: https://drive.google.com/file/d/1L20SNOO7ieE2F3KrwHXGFiJTUhIErb3z/view?usp=sharing
+
+Database Note:
+
+Thought processnya:
+
+ - Saya membuat table Order dengan field total_price membuatnya menjadi bentuk yang BCNF dikarenakan pada user story 5, ketika kita mengupdate harga menu, harga total order itu tidak berubah, sehingga perlu sedikit denormalisasi disini, saya pilih untuk menambah field total_price karena saya lihat paling mudah untuk di implementasi
+
+- Saya membuat tabel Customer dengan field  name, email, address dengan harapan suatu saat jika dikembangkan sistem login, akan dibuat tabel User dengan field username dan password yang dimana Customer belongs_to suatu User dan suatu User akan mempunyai nested attribute yaitu Customer itu.
+
+- Untuk tampilan daily report of order, saya tidak membuat halaman baru untuk melihat daftar order dalam suatu hari karena saya melihat hal itu sebagai hal redundant, tetapi saya membuat sistem filter, sort, dan searching pada halaman orders (order list) yang sudah ada untuk melihat daily report. Untuk fitur daily reportnya itu sendiri, terdapat, sorting berdasarkan email, total_price, order_date, status. Filter berdasrkan nama/email customer, total_price, order_date
