@@ -2,8 +2,14 @@
 
 <h1>Orders</h1>
 
-<%= render 'search' %>
+<div>
+  <%= link_to "New order", new_order_path, class: "btn btn-secondary" %>
+  <%= link_to "Search Order", "#offcanvasExample", data: { bs_toggle: "offcanvas" }, area: { controls: "offcanvasExample" }, role: "button", class: "btn btn-primary" %>
+</div>
 
+<%= render 'search', q: @q %>
+
+<br>
 <div id="orders">
   <table class="w-100 table table-striped table-light table-hover table-bordered">
     <thead class="thead-light">
@@ -45,6 +51,4 @@
     </tbody>
   </table>
 </div>
-<br>
 
-<%= link_to "New order", new_order_path, class: "btn btn-secondary" %>
