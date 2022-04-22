@@ -11,4 +11,10 @@ RSpec.describe Customer, type: :model do
     model.valid?
     expect(model.errors[:email]).to include('is invalid')
   end
+
+  it 'is invalid without a name' do
+    model = described_class.new(name: nil, email: 'juan@gigih.com', address: 'Alamat')
+    model.valid?
+    expect(model.errors[:name]).to include("can't be blank")
+  end
 end
