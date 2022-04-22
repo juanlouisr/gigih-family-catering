@@ -6,4 +6,8 @@ class Order < ApplicationRecord
   def current_price
     order_details.map { |d| d.menu.price * d.quantity }.sum
   end
+
+  def update_price
+    @total_price = current_price
+  end
 end
