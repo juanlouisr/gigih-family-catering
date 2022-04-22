@@ -1,4 +1,4 @@
-<%= form_with(model: order) do |form| %>
+<%= form_for @order do |form| %>
   <% if order.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -13,15 +13,50 @@
 
   <div>
     <%= form.label :customer_id, style: "display: block" %>
-    <%= form.text_field :customer_id %>
+    <%= form.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => false}, { class: "form-control"}) %>
   </div>
 
-  <div>
-    <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price %>
-  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th style="width:5%"></th>
+        <th style="width:80%">Menu</th>
+        <th style="width:15%">Quantity</th>
+      </tr>
+    </thead>
+    <tbody class='fields'>
+    <%= form.fields_for :order_details do |builder| %>
+      <%= render 'order_detail', f: builder %>
+    <% end %>
+    </tbody>
+  </table>
 
   <div>
-    <%= form.submit %>
+    <%= form.number_field :total_price, class:"form-control", value: "0", type: :hidden  %>
+  </div>
+
+  <br>
+  <div>
+    <%= form.submit class: "btn btn-secondary" %>
+    <%= link_to_add_row('Add Menu', form, :order_details, class: "btn btn-primary")%>
   </div>
 <% end %>
+
+<script>
+
+$('form').on('click', '.remove-fields', function(event) {
+  $(this).prev('input[type=hidden]').val('1')
+  $(this).closest('tr').hide()
+  return event.preventDefault()
+});
+
+$('form').on('click', '.add_fields', function(event) {
+  var regexp, time;
+  time = new Date().getTime();
+  regexp = new RegExp($(this).data('id'), 'g')
+  $('.fields').append($(this).data('fields').replace(regexp, time))
+  return event.preventDefault()
+});
+
+</script>

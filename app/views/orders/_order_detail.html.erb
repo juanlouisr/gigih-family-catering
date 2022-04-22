@@ -1,0 +1,8 @@
+<tr>
+  <td>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to 'Remove', '#', class: "btn btn-outline-danger btn-sm text-white remove-fields" %>
+  </td>
+  <td><%= f.collection_select(:menu_id, Menu.all, :id, :name, {:prompt => false}, { class: "form-control"})  %></td>
+  <td><%= f.text_field :quantity, class: "form-control" %></td>
+</tr>
