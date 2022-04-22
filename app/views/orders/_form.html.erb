@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :customer_id, style: "display: block" %>
-    <%= form.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => false}, { class: "form-control"}) %>
+    <%= form.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => false}, { class: "form-select"}) %>
   </div>
 
 
@@ -31,7 +31,10 @@
     <% end %>
     </tbody>
   </table>
-
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, Order.statuses.map { |key, value| [key.humanize, key] }, {}, { class: "form-select" } %>
+  </div>
   <div>
     <%= form.number_field :total_price, class:"form-control", value: "0", type: :hidden  %>
   </div>

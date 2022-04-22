@@ -3,7 +3,7 @@
 <h1>Menus</h1>
 
 <div id="menus">
-  <table class="w-100 table table-striped table-dark table-hover table-bordered">
+  <table class="w-100 table table-striped table-light table-hover table-bordered">
     <thead class="thead-light">
       <tr>
         <th style="width:20%">Name</th>
@@ -17,7 +17,7 @@
     <tbody>
       <% @menus.each do |menu| %>
         <tr>
-          <td><%= link_to menu.name, menu, class:"text-white" %></td>
+          <td><%= link_to menu.name, menu, class:"text-black" %></td>
           <td><%= menu.price %></td>
           <td>
           <% menu.categories.each do |category| %>
@@ -29,7 +29,7 @@
           <td><%= button_to 'Delete', menu, 
                   method: :delete, 
                   onclick: "return confirmDestroy('Are you sure want destroy this menu?')", 
-                  class: "btn btn-outline-danger btn-sm text-white" %></td> 
+                  class: "btn btn-outline-danger btn-sm text-black" %></td> 
         </tr>
       <% end %>
     </tbody>

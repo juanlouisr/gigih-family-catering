@@ -1,12 +1,40 @@
 <div id="<%= dom_id order %>">
   <p>
     <strong>Customer:</strong>
-    <%= order.customer_id %>
+    <%= order.customer.name %>
   </p>
+  <p>
+    <strong>Customer Email:</strong>
+    <%= order.customer.email %>
+  </p>
+  <p>
+    <strong>Menus:</strong>
+  </p>
+  <table class="w-100 table table-striped table-light table-hover table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th style="width:20%">Name</th>
+        <th style="width:15%">Price</th>
+        <th style="width:20%">Quantity</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      <% order.order_details.each do |detail| %>
+        <tr>
+          <td><%= detail.menu.name %></td>
+          <td><%= detail.menu.price %></td>
+          <td><%= detail.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p>
+    <strong>Status:</strong>
+    <%= order.status %>
+  </p>
   <p>
     <strong>Total price:</strong>
     <%= order.total_price %>
   </p>
-
 </div>
