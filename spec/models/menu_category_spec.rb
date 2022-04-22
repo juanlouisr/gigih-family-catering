@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MenuCategory, type: :model do
   it 'is invalid without a reference' do
-    menucategory = MenuCategory.new(
+    menucategory = described_class.new(
       menu_id: 5,
       category_id: 5
     )
-    expect(menucategory).to_not be_valid
+    expect(menucategory).not_to be_valid
   end
 
   it 'is valid with a reference' do
@@ -19,9 +21,9 @@ RSpec.describe MenuCategory, type: :model do
       price: 11_000,
       id: 5
     )
-    expect(category.id).to eql(5)
-    expect(menu.id).to eql(5)
-    menucategory = MenuCategory.new(
+    expect(category.id).to be(5)
+    expect(menu.id).to be(5)
+    menucategory = described_class.new(
       menu_id: 5,
       category_id: 5
     )

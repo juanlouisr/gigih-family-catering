@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MenuCategoriesController < ApplicationController
-  before_action :set_menu_category, only: %i[ show edit update destroy ]
+  before_action :set_menu_category, only: %i[show edit update destroy]
 
   # GET /menu_categories or /menu_categories.json
   def index
@@ -7,8 +9,7 @@ class MenuCategoriesController < ApplicationController
   end
 
   # GET /menu_categories/1 or /menu_categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /menu_categories/new
   def new
@@ -16,8 +17,7 @@ class MenuCategoriesController < ApplicationController
   end
 
   # GET /menu_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /menu_categories or /menu_categories.json
   def create
@@ -25,7 +25,7 @@ class MenuCategoriesController < ApplicationController
 
     respond_to do |format|
       if @menu_category.save
-        format.html { redirect_to menu_category_url(@menu_category), notice: "Menu category was successfully created." }
+        format.html { redirect_to menu_category_url(@menu_category), notice: 'Menu category was successfully created.' }
         format.json { render :show, status: :created, location: @menu_category }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class MenuCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @menu_category.update(menu_category_params)
-        format.html { redirect_to menu_category_url(@menu_category), notice: "Menu category was successfully updated." }
+        format.html { redirect_to menu_category_url(@menu_category), notice: 'Menu category was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu_category }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class MenuCategoriesController < ApplicationController
     @menu_category.destroy
 
     respond_to do |format|
-      format.html { redirect_to menu_categories_url, notice: "Menu category was successfully destroyed." }
+      format.html { redirect_to menu_categories_url, notice: 'Menu category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu_category
-      @menu_category = MenuCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def menu_category_params
-      params.require(:menu_category).permit(:menu_id, :category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_menu_category
+    @menu_category = MenuCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def menu_category_params
+    params.require(:menu_category).permit(:menu_id, :category_id)
+  end
 end

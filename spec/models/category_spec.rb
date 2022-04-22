@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   it 'is valid with a name' do
-    category = Category.new(
+    category = described_class.new(
       name: 'Makanan'
     )
 
@@ -10,7 +12,7 @@ RSpec.describe Category, type: :model do
   end
 
   it 'is invalid without a name' do
-    category = Category.new(
+    category = described_class.new(
       name: nil
     )
 
@@ -18,10 +20,10 @@ RSpec.describe Category, type: :model do
   end
 
   it 'is invalid with duplicate name' do
-    Category.create(
+    described_class.create(
       name: 'Makanan'
     )
-    category2 = Category.new(
+    category2 = described_class.new(
       name: 'Makanan'
     )
 

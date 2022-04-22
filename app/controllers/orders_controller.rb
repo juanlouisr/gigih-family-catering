@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[show edit update destroy]
 
   # GET /orders or /orders.json
   def index
@@ -8,8 +10,7 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1 or /orders/1.json
-  def show
-  end
+  def show; end
 
   # GET /orders/new
   def new
@@ -18,8 +19,7 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /orders or /orders.json
   def create
@@ -38,11 +38,14 @@ class OrdersController < ApplicationController
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
-  def update  
+  def update
     order_params[:total_price] = @order.current_price
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to orders_url, notice: "#{@order.customer.name}'s order was successfully updated, price was changed to #{@order.total_price}" }
+        format.html do
+          redirect_to orders_url,
+                      notice: "#{@order.customer.name}'s order was successfully updated, price was changed to #{@order.total_price}"
+        end
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +59,7 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

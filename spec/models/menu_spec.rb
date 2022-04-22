@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
   it 'is valid with a name and a price' do
-    menu = Menu.new(
+    menu = described_class.new(
       name: 'Makanan',
       price: 15_000
     )
@@ -11,7 +13,7 @@ RSpec.describe Menu, type: :model do
   end
 
   it 'is invalid without a name or and a price' do
-    menu = Menu.new(
+    menu = described_class.new(
       name: nil,
       price: 15_000
     )
@@ -19,7 +21,7 @@ RSpec.describe Menu, type: :model do
     menu.valid?
     expect(menu.errors[:name]).to include("can't be blank")
 
-    menu2 = Menu.new(
+    menu2 = described_class.new(
       name: 'Makanan',
       price: nil
     )
@@ -29,12 +31,12 @@ RSpec.describe Menu, type: :model do
   end
 
   it 'is invalid with a duplicate name' do
-    Menu.create(
+    described_class.create(
       name: 'Makanan',
       price: 15_000
     )
 
-    menu2 = Menu.new(
+    menu2 = described_class.new(
       name: 'Makanan',
       price: 11_000
     )
@@ -52,24 +54,24 @@ RSpec.describe Menu, type: :model do
       x -= 1
     end
 
-    menu = Menu.new(
+    menu = described_class.new(
       name: 'Makanan',
       price: 15_000,
       description: desc
     )
     expect(menu).to be_valid
     menu.description += 'A'.to_s
-    expect(menu).to_not be_valid
+    expect(menu).not_to be_valid
   end
 
   it 'is invalid with price lower than than 0.01' do
-    menu = Menu.new(
+    menu = described_class.new(
       name: 'Makanan',
       price: 0.001
     )
 
     menu.valid?
 
-    expect(menu.errors[:price]).to include("must be greater than or equal to 0.01")
+    expect(menu.errors[:price]).to include('must be greater than or equal to 0.01')
   end
 end
