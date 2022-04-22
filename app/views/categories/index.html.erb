@@ -2,6 +2,10 @@
 
 <h1>Categories</h1>
 
+<div>
+  <%= link_to 'New Category', new_category_path, class:"btn btn-secondary" %>
+</div>
+<br>
 <div id="categories">
   <table class="w-100 table table-striped table-light table-hover table-bordered">
     <thead class="thead-light">
@@ -11,7 +15,6 @@
         <th style="width:15%"> </th>
       </tr>
     </thead>
-
     <tbody>
       <% @categories.each do |category| %>
         <tr>
@@ -26,7 +29,4 @@
       <% end %>
     </tbody>
   </table>
-  <br>
-
-  <%= link_to 'New Category', new_category_path, class:"btn btn-secondary" %>
 </div>

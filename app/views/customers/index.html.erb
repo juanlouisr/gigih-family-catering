@@ -2,6 +2,10 @@
 
 <h1>Customers</h1>
 
+<div>
+  <%= link_to "New customer", new_customer_path, class: "btn btn-secondary" %>
+</div>
+<br>
 <div id="customers">
   <table class="w-100 table table-striped table-light table-hover table-bordered">
     <thead class="thead-light">
@@ -31,4 +35,3 @@
   </table>
 </div>
 <br>
-<%= link_to "New customer", new_customer_path, class: "btn btn-secondary" %>
