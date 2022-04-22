@@ -5,6 +5,10 @@
 <div>
   <%= link_to "Edit this menu", edit_menu_path(@menu) %> |
   <%= link_to "Back to menus", menus_path %>
-
-  <%= button_to "Destroy this menu", @menu, method: :delete %>
+  <br><br>
+  <%= button_to 'Delete', 
+      @menu, 
+      method: :delete, 
+      onclick: "return confirmDestroy('Are you sure want destroy this menu?')", 
+      class: "btn btn-danger btn-sm text-white" %>
 </div>

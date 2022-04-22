@@ -5,6 +5,10 @@
 <div>
   <%= link_to "Edit this order", edit_order_path(@order) %> |
   <%= link_to "Back to orders", orders_path %>
-
-  <%= button_to "Destroy this order", @order, method: :delete %>
+  <br><br>
+  <%= button_to 'Delete', 
+      @order, 
+      method: :delete, 
+      onclick: "return confirmDestroy('Are you sure want destroy this order?')", 
+      class: "btn btn-danger btn-sm text-white" %>
 </div>
