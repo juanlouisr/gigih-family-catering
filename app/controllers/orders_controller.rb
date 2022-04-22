@@ -72,6 +72,7 @@ class OrdersController < ApplicationController
     @order_params ||= params.require(:order).permit(
       :customer_id,
       :total_price,
+      :status,
       # order_details_attributes: %i[id order_id menu_id quantity]
       order_details_attributes: OrderDetail.attribute_names.map(&:to_sym).push(:_destroy)
     )
