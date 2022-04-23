@@ -4,7 +4,10 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details, dependent: :destroy
   has_many :menus, through: :order_details
-  validates :order_details, presence: true
+  # validates :order_details, presence: true
+  validates :customer_id, presence: true
+  validates :status, presence: true
+  validates :total_price, presence: true
   accepts_nested_attributes_for :order_details, allow_destroy: true
   enum :status, %i[NEW PAID CANCELED]
 
