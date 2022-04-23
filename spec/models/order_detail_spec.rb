@@ -16,4 +16,11 @@ RSpec.describe OrderDetail, type: :model do
     model = described_class.new(order_id: nil, menu: menu, quantity: 1)
     expect(model).not_to be_valid
   end
+
+  it 'is invalid without a menu' do
+    customer = Customer.create(name: 'Makanan', email: 'juan@gigih.com', address: 'Alamat')
+    order = Order.create(customer: customer, total_price: 0, status: 'NEW')
+    model = described_class.new(order: order, menu: nil, quantity: 1)
+    expect(model).not_to be_valid
+  end
 end
