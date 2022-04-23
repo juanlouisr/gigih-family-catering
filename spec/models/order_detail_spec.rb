@@ -23,4 +23,13 @@ RSpec.describe OrderDetail, type: :model do
     model = described_class.new(order: order, menu: nil, quantity: 1)
     expect(model).not_to be_valid
   end
+
+  it 'is invalid with quantity less than 1' do
+    customer = Customer.create(name: 'Makanan', email: 'juan@gigih.com', address: 'Alamat')
+    order = Order.create(customer: customer, total_price: 0, status: 'NEW')
+    menu = Menu.create(name: 'Makanan', price: 15_000)
+    model = described_class.new(order: order, menu: menu, quantity: 0)
+    model.valid?
+    expect(model.errors[:quantity]).to include('must be greater than or equal to 1')
+  end
 end
