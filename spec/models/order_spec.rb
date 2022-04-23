@@ -9,7 +9,7 @@ RSpec.describe Order, type: :model do
     expect(model).to be_valid
   end
 
-  it 'is valid without a customer' do
+  it 'is invalid without a customer' do
     model = described_class.new(customer: nil, total_price: 0, status: 'NEW')
     model.valid?
     expect(model.errors[:customer_id]).to include("can't be blank")
